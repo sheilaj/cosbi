@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Code for the cosbi users feature.
+ */
+
+include_once 'cosbi_users.features.inc';
+
+/**
+ * Implements hook_menu_alter().
+ */
+function cosbi_users_menu_alter(&$items) {
+  $items['user/%user/view']['title'] = 'Dashboard';
+  $items['user/%user/edit']['title'] = 'Edit account';
+}

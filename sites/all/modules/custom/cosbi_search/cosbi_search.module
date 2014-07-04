@@ -1,0 +1,20 @@
+<?php
+/**
+ * @file
+ * Code for the cosbi search feature.
+ */
+
+include_once 'cosbi_search.features.inc';
+
+/**
+ * Implements hook_entity_insert().
+ */
+function cosbi_search_entity_insert($entity, $type) {
+
+  // Re-save node to match changed date to comment date. Doing this to allow
+  // sorting indexed nodes by most recent update (node edit or new comment).
+  if ($type == 'comment') {
+    $node = node_load($entity->nid);
+    node_save($node);
+  }
+}
