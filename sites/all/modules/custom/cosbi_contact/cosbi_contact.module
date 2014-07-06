@@ -15,6 +15,8 @@ function cosbi_contact_form_contact_node_form_alter(&$form, &$form_state) {
   //if (!(user_access('edit any contact content'))) {
     //$form['field_contact_role']['#access'] = FALSE;
   //}
+
+  // Set default for role by url arg.
   $contact_role_vocab = taxonomy_vocabulary_machine_name_load('contact_role');
   $roles = entity_load('taxonomy_term', FALSE, array('vid' => $contact_role_vocab->vid));
   $contact_roles = array();
@@ -25,5 +27,11 @@ function cosbi_contact_form_contact_node_form_alter(&$form, &$form_state) {
   if (array_key_exists(arg(3), $contact_roles)) {
     //drupal_set_title('Create arg(3)');
     $form['field_contact_role'][LANGUAGE_NONE]['#default_value'] = array($contact_roles[arg(3)]);
+  }
+
+  // Set default for connection by looged in user.
+  global $user;
+  if ($user->uid) {
+    $form['field_connection'][LANGUAGE_NONE]['#default_value'] = $user->uid;
   }
 }
