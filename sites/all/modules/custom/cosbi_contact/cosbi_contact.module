@@ -40,5 +40,5 @@ function cosbi_contact_form_contact_node_form_alter(&$form, &$form_state) {
  * Preprocessor for comment.
  */
 function cosbi_contact_preprocess_comment(&$vars) {
-  unset($vars['title']);
+  $vars['title_attributes_array'] = array('class' => array('element-invisible'));
 }
