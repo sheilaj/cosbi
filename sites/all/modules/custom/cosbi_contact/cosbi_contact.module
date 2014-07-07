@@ -35,3 +35,10 @@ function cosbi_contact_form_contact_node_form_alter(&$form, &$form_state) {
     $form['field_connection'][LANGUAGE_NONE]['#default_value'] = $user->uid;
   }
 }
+
+/**
+ * Preprocessor for comment.
+ */
+function cosbi_contact_preprocess_comment(&$vars) {
+  unset($vars['title']);
+}
